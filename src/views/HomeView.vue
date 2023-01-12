@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { useMouse } from "@vueuse/core";
+
+const { x, y } = useMouse();
 </script>
 
 <template>
-  <main>
-   <h1>This is home page</h1>
-  </main>
+  <div>pos: {{ x }}, {{ y }}</div>
 </template>
