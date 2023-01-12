@@ -6,4 +6,5 @@ const { x, y } = useMouse();
 
 <template>
   <div>pos: {{ x }}, {{ y }}</div>
+  <RouterLink to="/invoice/10">Go to invoice page</RouterLink>
 </template>
