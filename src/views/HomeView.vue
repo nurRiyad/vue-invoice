@@ -2,13 +2,6 @@
 import FooterVue from "@/components/Footer.vue";
 import InvoiceListVue from "@/components/InvoiceList.vue";
 import NavbarVue from "@/components/Navbar.vue";
-import { useMouse } from "@vueuse/core";
-
-const { x, y } = useMouse();
-
-fetch("https://dummyjson.com/carts")
-  .then((res) => res.json())
-  .then(console.log);
 </script>
 
 <template>
