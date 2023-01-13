@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import InvoiceHeader from "@/components/InvoiceHeader.vue";
+import InvoiceLoader from "@/components/InvoiceLoader.vue";
 import { useCartsStore } from "@/stores/carts";
 import moment from "moment";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 // init route, raouter and cart store
 const route = useRoute();
-
+const router = useRouter();
 const store = useCartsStore();
 
 const { cartList, dataFetching } = storeToRefs(store);
@@ -16,7 +17,9 @@ const { cartList, dataFetching } = storeToRefs(store);
 const cartId = computed(() => route.params.invoiceId as string);
 
 const cartData = computed(() => {
-  return cartList.value.find((data) => String(data.id) === cartId.value);
+  const d = cartList.value.find((data) => String(data.id) === cartId.value);
+  if (!d) router.push("/404");
+  return d;
 });
 
 const date = computed(() => moment().format("MMM Do YY"));
@@ -28,7 +31,7 @@ const products = computed(() => cartData.value?.products || []);
   <main class="container max-w-5xl mx-auto text-zinc-600 px-6">
     <InvoiceHeader />
     <div id="downloadable-element">
-      <div class="invoice-box">
+      <div v-if="!dataFetching" class="invoice-box">
         <table cellpadding="0" cellspacing="0">
           <tr class="top">
             <td colspan="2">
@@ -88,6 +91,9 @@ const products = computed(() => cartData.value?.products || []);
             <td>Total: ${{ cartData?.total || "-" }}</td>
           </tr>
         </table>
+      </div>
+      <div v-else>
+        <InvoiceLoader />
       </div>
     </div>
   </main>
