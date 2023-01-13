@@ -1,25 +1,27 @@
 # invoice
 
-This template should help get you started developing with Vue 3 in Vite.
+## This project is built with
 
-## Recommended IDE Setup
+- Vue3 with composition api & script setup
+- Typescript for typechecking
+- Vue-Router for route navigation
+- Pinia for state management
+- Vue-Content-Loader for showing loader
+- html2pdf from html to pdf convert
+- Moment for date formate
+- Use tailwindcss for design
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Main feature of this project
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Show list of card in root page
+- On invoice btn click go to invoice page
+- Can print & download the invoice from that page
+- Fully typesafe
+- Store data in pinia to stop redundant api call
+- Show loader until initial data load from api call
+- Add fallback route if path not found
+- All props are typesafe with default value
+- Fast navigation though route.
 
 ## Project Setup
 
