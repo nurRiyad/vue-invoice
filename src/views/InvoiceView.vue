@@ -1,16 +1,15 @@
 <script setup lang="ts">
+import InvoiceHeader from "@/components/InvoiceHeader.vue";
 import { useCartsStore } from "@/stores/carts";
-import html2pdf from "html2pdf.js";
+import moment from "moment";
 import { storeToRefs } from "pinia";
-import { computed, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 // init route, raouter and cart store
 const route = useRoute();
-const router = useRouter();
-const store = useCartsStore();
 
-const showBtn = ref(true);
+const store = useCartsStore();
 
 const { cartList, dataFetching } = storeToRefs(store);
 
@@ -20,45 +19,14 @@ const cartData = computed(() => {
   return cartList.value.find((data) => String(data.id) === cartId.value);
 });
 
-const onDownloadClick = () => {
-  const element = document.getElementById("riyaddd");
-  const opt = {
-    margin: 1,
-    filename: "myfile.pdf",
-    image: { type: "jpeg", quality: 1 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-  };
+const date = computed(() => moment().format("MMM Do YY"));
 
-  // New Promise-based usage:
-  html2pdf().set(opt).from(element).save();
-};
-
-const onPrintClick = () => {
-  showBtn.value = false;
-  const el = document.getElementById("riyaddd");
-  window.print();
-  showBtn.value = true;
-};
-
-const onHomeClick = () => {
-  router.push("/");
-};
+const products = computed(() => cartData.value?.products || []);
 </script>
 
 <template>
   <main class="container max-w-5xl mx-auto text-zinc-600 px-6">
-    <div class="print:hidden my-5 space-x-5 content-center flex justify-center">
-      <button @click="onHomeClick" class="px-4 py-1 bg-sky-300 rounded-md">
-        Home
-      </button>
-      <button @click="onPrintClick" class="px-4 py-1 bg-sky-300 rounded-md">
-        Print
-      </button>
-      <button @click="onDownloadClick" class="px-4 py-1 bg-sky-300 rounded-md">
-        Download
-      </button>
-    </div>
+    <InvoiceHeader />
     <div id="downloadable-element">
       <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
@@ -74,9 +42,8 @@ const onHomeClick = () => {
                   </td>
 
                   <td>
-                    Invoice #: 123<br />
-                    Created: January 1, 2015<br />
-                    Due: February 1, 2015
+                    Invoice # {{ cartData?.id || "-" }}<br />
+                    Created at {{ date }}<br />
                   </td>
                 </tr>
               </table>
@@ -88,31 +55,19 @@ const onHomeClick = () => {
               <table>
                 <tr>
                   <td>
-                    Sparksuite, Inc.<br />
-                    12345 Sunny Road<br />
-                    Sunnyville, CA 12345
+                    Al QAMAR AL ZHABI General Trading LLC<br />
+                    near Gold Souq Ajman-U.A.E<br />
+                    +971558332996
                   </td>
 
                   <td>
-                    Acme Corp.<br />
-                    John Doe<br />
-                    john@example.com
+                    Riyad Inc<br />
+                    Nur Riyad<br />
+                    alasadnurriyad3@google.com
                   </td>
                 </tr>
               </table>
             </td>
-          </tr>
-
-          <tr class="heading">
-            <td>Payment Method</td>
-
-            <td>Check #</td>
-          </tr>
-
-          <tr class="details">
-            <td>Check</td>
-
-            <td>1000</td>
           </tr>
 
           <tr class="heading">
@@ -121,28 +76,16 @@ const onHomeClick = () => {
             <td>Price</td>
           </tr>
 
-          <tr class="item">
-            <td>Website design</td>
+          <tr v-for="product in products" :key="product.id" class="item">
+            <td>{{ product.title }}</td>
 
-            <td>$300.00</td>
-          </tr>
-
-          <tr class="item">
-            <td>Hosting (3 months)</td>
-
-            <td>$75.00</td>
-          </tr>
-
-          <tr class="item last">
-            <td>Domain name (1 year)</td>
-
-            <td>$10.00</td>
+            <td>${{ product.total }}</td>
           </tr>
 
           <tr class="total">
             <td></td>
 
-            <td>Total: $385.00</td>
+            <td>Total: ${{ cartData?.total || "-" }}</td>
           </tr>
         </table>
       </div>
@@ -226,6 +169,11 @@ const onHomeClick = () => {
     display: block;
     text-align: center;
   }
+}
+
+@page {
+  size: auto;
+  margin: 4mm;
 }
 
 /** RTL **/

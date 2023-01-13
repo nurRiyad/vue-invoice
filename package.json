@@ -11,8 +11,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@vueuse/core": "^9.10.0",
     "html2pdf.js": "^0.9.3",
+    "moment": "^2.29.4",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vue-content-loader": "^2.0.1",

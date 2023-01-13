@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import CartListVue from "@/components/CartList.vue";
 import FooterVue from "@/components/Footer.vue";
-import InvoiceListVue from "@/components/InvoiceList.vue";
 import NavbarVue from "@/components/Navbar.vue";
 </script>
 
@@ -11,7 +11,7 @@ import NavbarVue from "@/components/Navbar.vue";
     </header>
     <main>
       <div class="p-9"></div>
-      <InvoiceListVue />
+      <CartListVue />
     </main>
     <footer>
       <FooterVue />

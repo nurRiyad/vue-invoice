@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CartLoader from "./CartLoader.vue";
-import InvoiceCard from "./InvoiceCard.vue";
+import CartCardVue from "./CartCard.vue";
+import CartLoaderVue from "./CartLoader.vue";
 
 import { useCartsStore } from "@/stores/carts";
 import { storeToRefs } from "pinia";
@@ -16,12 +16,12 @@ const { cartList, dataFetching } = storeToRefs(store);
     </h1>
     <div v-if="dataFetching" class="mt-3 mb-8 space-y-5">
       <div v-for="n in 10">
-        <CartLoader />
+        <CartLoaderVue />
       </div>
     </div>
     <div v-else class="mt-3 mb-8 space-y-5">
       <div v-for="cart in cartList">
-        <InvoiceCard
+        <CartCardVue
           :id="cart.id"
           :total="cart.total"
           :discounted-total="cart.discountedTotal"

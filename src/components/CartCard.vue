@@ -7,7 +7,6 @@ export interface Porps {
   total: number;
   discountedTotal: number;
   userId: number;
-  totalProducts: number;
 }
 
 const props = withDefaults(defineProps<Porps>(), {
@@ -15,7 +14,6 @@ const props = withDefaults(defineProps<Porps>(), {
   total: NaN,
   discountedTotal: NaN,
   userId: NaN,
-  totalProducts: NaN,
 });
 
 const router = useRouter();
