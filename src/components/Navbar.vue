@@ -16,7 +16,7 @@ import { RouterLink } from "vue-router";
       </ul>
       <ul class="flex items-center space-x-3">
         <li title="About Me">
-          <a href="https://www.nurriyad.xyz/"> About Me </a>
+          <a href="https://www.nurriyad.xyz/" target="_blank"> About Me </a>
         </li>
       </ul>
     </div>
