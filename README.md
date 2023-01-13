@@ -1,5 +1,7 @@
 # invoice
 
+## [Live Demo :rocket:](https://invoice-nurriyad.netlify.app/)
+
 ## This project is built with
 
 - Vue3 with composition api & script setup
@@ -10,6 +12,7 @@
 - html2pdf from html to pdf convert
 - Moment for date formate
 - Use tailwindcss for design
+- Deployed in Netlify
 
 ## Main feature of this project
 
