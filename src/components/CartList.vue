@@ -15,12 +15,12 @@ const { cartList, dataFetching } = storeToRefs(store);
       Cart List
     </h1>
     <div v-if="dataFetching" class="mt-3 mb-8 space-y-5">
-      <div v-for="n in 10">
+      <div v-for="n in 10" :key="n">
         <CartLoaderVue />
       </div>
     </div>
     <div v-else class="mt-3 mb-8 space-y-5">
-      <div v-for="cart in cartList">
+      <div v-for="cart in cartList" :key="cart.id">
         <CartCardVue
           :id="cart.id"
           :total="cart.total"
