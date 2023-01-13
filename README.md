@@ -1,4 +1,4 @@
-# invoice
+# Invoice Web App
 
 ## [Live Demo :rocket:](https://invoice-nurriyad.netlify.app/)
 
