@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRouter } from "vue-router";
+import HeroiconsArrowRightCircle from "~icons/heroicons/arrow-right-circle";
 
 export interface Porps {
   id: number;
@@ -40,11 +41,8 @@ const onShowInvoiceClick = () => {
       </p>
     </div>
     <div>
-      <button
-        class="py-2 px-4 hover:bg-sky-300 hover:shadow-lg bg-sky-200 rounded-lg"
-        @click="onShowInvoiceClick"
-      >
-        Show Invoice
+      <button class="py-2 px-4" @click="onShowInvoiceClick">
+        <HeroiconsArrowRightCircle :font-size="35" />
       </button>
     </div>
   </div>

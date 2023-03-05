@@ -4,7 +4,7 @@ import InvoiceLoader from "@/components/InvoiceLoader.vue";
 import { useCartsStore } from "@/stores/carts";
 import moment from "moment";
 import { storeToRefs } from "pinia";
-import { computed } from "vue";
+import { computed, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 // init route, raouter and cart store
@@ -17,9 +17,11 @@ const { cartList, dataFetching } = storeToRefs(store);
 const cartId = computed(() => route.params.invoiceId as string);
 
 const cartData = computed(() => {
-  const d = cartList.value.find((data) => String(data.id) === cartId.value);
-  if (!d) router.push("/404");
-  return d;
+  return cartList.value.find((data) => String(data.id) === cartId.value);
+});
+
+watchEffect(() => {
+  if (!cartData.value) router.push("/404");
 });
 
 const date = computed(() => moment().format("MMM Do YY"));
@@ -39,7 +41,7 @@ const products = computed(() => cartData.value?.products || []);
                 <tr>
                   <td class="title">
                     <img
-                      src="/Al-Qamar-Al-Zhabi.png"
+                      src="/logo.png"
                       style="width: 100%; max-width: 300px"
                     />
                   </td>
@@ -58,9 +60,9 @@ const products = computed(() => cartData.value?.products || []);
               <table>
                 <tr>
                   <td>
-                    Al QAMAR AL ZHABI General Trading LLC<br />
-                    near Gold Souq Ajman-U.A.E<br />
-                    +971558332996
+                    Random General Trading LLC<br />
+                    Near Uttara Dhaka, Bangladesh<br />
+                    +880171558345219
                   </td>
 
                   <td>

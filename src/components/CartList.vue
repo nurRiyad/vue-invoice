@@ -12,7 +12,7 @@ const { cartList, dataFetching } = storeToRefs(store);
 <template>
   <main class="container max-w-5xl mx-auto text-zinc-600 px-6">
     <h1 class="text-4xl text-black underline font-bold text-center my-5">
-      Cart List
+      Invoice List
     </h1>
     <div v-if="dataFetching" class="mt-3 mb-8 space-y-5">
       <div v-for="n in 10" :key="n">
